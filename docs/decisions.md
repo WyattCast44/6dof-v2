@@ -50,11 +50,42 @@ Euler angles (3-2-1) only for now, with the θ = ±90° singularity documented o
 No sampling or memory limit yet (open question). Scenario query names so far:
 `timeWhen`, `timeWhenReaches`, `max`, `min`, `valueAt`, `steadyValue`.
 
+## 7. `computeRates` takes the evaluation time
+
+*Was listed as open.* The spec's signature is `computeRates(state,
+environment, inputs)`; v2 adds a fourth argument, `time`. Wind is defined as a
+function of position and time, and RK4 evaluates rates at the start, middle
+and end of a step, so the dynamics must see each stage's time. Inputs are
+still sampled once per tick, at the start of the step.
+
+## 8. Aerodynamics sees only air data
+
+Step 1 of a pipeline builds `AirData` (atmosphere at the body's altitude,
+wind, air-relative velocity, airspeed, α, β, q̄, Mach). An `AeroModel` gets
+air data plus inputs, never the raw state. `AeroModel<Inputs>` is generic so
+a stability-derivative model can read control deflections and configuration.
+
+Wind vectors are "blowing toward" in NED; `ConstantWind.fromDirection` takes
+the weather-report "from" heading.
+
+## 9. The 1976 atmosphere follows the standard, not the sim's gravity
+
+`StandardAtmosphere1976` converts geometric altitude to geopotential altitude
+and uses the standard's fixed g₀, rather than taking a `GravityModel` as v1
+did. That makes its numbers match the published tables (checked in tests from
+−1 km to 80 km). Valid range: −5 km to 86 km.
+
+## 10. The environment defaults to the simplest models
+
+`new Environment()` is constant gravity, constant sea-level air, and no wind.
+Richer models are opt-in: `new Environment({ atmosphere: new StandardAtmosphere1976() })`.
+
 ## Still open
 
 - Generic rigid-body core vs. aircraft-specific core. The current core is
   generic (a ball uses the same `rigidBodyRates`), which leaves room for
   rockets or quadcopters.
 - Exact equation numbers for citations (`TODO(citation)` in the code).
-- Wind models, time-varying environment, and whether `computeRates` needs `t`.
+- Richer wind: altitude profile with decay, gusts and turbulence.
+- Reynolds-number-dependent drag and the Magnus force for spinning balls.
 - Playable real-time runner and visualization layer.

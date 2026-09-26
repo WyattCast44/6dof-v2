@@ -8,6 +8,19 @@ import { Degrees } from "./Degrees";
 export class Radians extends Quantity {
   readonly unit = "rad";
 
+  /**
+   * The angle of the point (x, y), measured from the +x axis, in (−π, π].
+   * Both legs must share a unit, e.g. α = atan2(w, u).
+   */
+  static atan2<Q extends Quantity>(y: Q, x: Q): Radians {
+    return new Radians(Math.atan2(y.value, x.value));
+  }
+
+  /** The angle whose sine is `ratio` (a plain number in [−1, 1]). */
+  static asin(ratio: number): Radians {
+    return new Radians(Math.asin(Math.max(-1, Math.min(1, ratio))));
+  }
+
   sin(): number {
     return Math.sin(this.value);
   }

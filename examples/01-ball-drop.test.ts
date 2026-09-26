@@ -23,7 +23,7 @@ describe("Rung 1: ball dropped from 1,000 ft", () => {
     initialState: SimState.rigidBodyOnly(
       new RigidBodyState({ positionNed: new NedVector(new Meters(0), new Meters(0), height.negate()) }),
     ),
-    dynamics: new BallDynamics(new Ball(new Kilograms(1), new Meters(0.05))),
+    dynamics: new BallDynamics(new Ball({ mass: new Kilograms(1), radius: new Meters(0.05) })),
     timeStep: new Seconds(0.01),
   });
   const ground = new Meters(0);

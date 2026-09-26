@@ -44,6 +44,20 @@ export class NedVector<Q extends Quantity> extends Vector3<Q> {
     return NedVector.from(Vector3.subtractComponents(this.components, other.components));
   }
 
+  /** The same vector pointing the opposite way. */
+  negate(): NedVector<Q> {
+    return this.scale(-1);
+  }
+
+  /**
+   * A vector pointing the same way as this one, with length `magnitude`.
+   *
+   * @example velocityAirBody.withMagnitude(drag).negate() // drag opposes the airflow
+   */
+  withMagnitude<R extends Quantity>(magnitude: R): NedVector<R> {
+    return NedVector.from(Vector3.withMagnitudeComponents(this.components, magnitude));
+  }
+
   /** Multiply by a plain (unitless) number. */
   scale(factor: number): NedVector<Q> {
     return NedVector.from(Vector3.scaleComponents(this.components, factor));

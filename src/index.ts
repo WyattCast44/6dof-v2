@@ -8,5 +8,6 @@ export * from "./state";
 export * from "./integrators";
 export * from "./environment";
 export * from "./dynamics";
+export * from "./aero";
 export * from "./sim";
 export * from "./bodies";

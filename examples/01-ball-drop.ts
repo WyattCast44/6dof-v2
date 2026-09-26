@@ -19,7 +19,7 @@ import {
 } from "../src";
 
 // A 1 kg ball, 10 cm across...
-const ball = new Ball(new Kilograms(1), new Meters(0.05));
+const ball = new Ball({ mass: new Kilograms(1), radius: new Meters(0.05) });
 
 // ...held still, 1,000 ft above the ground. (Down is positive in NED, so
 // altitude is a negative "down".)

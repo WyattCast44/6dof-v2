@@ -53,7 +53,7 @@ describe("Simulator", () => {
       initialState: SimState.rigidBodyOnly(
         new RigidBodyState({ positionNed: new NedVector(new Meters(0), new Meters(0), new Meters(-50)) }),
       ),
-      dynamics: new BallDynamics(new Ball(new Kilograms(1), new Meters(0.1))),
+      dynamics: new BallDynamics(new Ball({ mass: new Kilograms(1), radius: new Meters(0.1) })),
       timeStep: new Seconds(0.1),
     });
 

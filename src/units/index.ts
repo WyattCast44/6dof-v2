@@ -22,11 +22,17 @@ export { RadiansPerSecondSquared } from "./RadiansPerSecondSquared";
 export { KilogramMetersSquared } from "./KilogramMetersSquared";
 export { KilogramMetersSquaredPerSecond } from "./KilogramMetersSquaredPerSecond";
 export { NewtonMeters } from "./NewtonMeters";
+export { SquareMeters } from "./SquareMeters";
+export { MetersSquaredPerSecondSquared } from "./MetersSquaredPerSecondSquared";
+export { KilogramsPerCubicMeter } from "./KilogramsPerCubicMeter";
+export { Pascals } from "./Pascals";
+export { Kelvin } from "./Kelvin";
 
 // Edge units (convert at the boundary)
 export { Feet } from "./Feet";
 export { Knots } from "./Knots";
 export { Pounds } from "./Pounds";
 export { Degrees } from "./Degrees";
+export { Celsius } from "./Celsius";
 
 import "./UnitAlgebra";

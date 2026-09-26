@@ -91,8 +91,8 @@ export class Simulator<
     const time = this.time;
     const inputs = this.inputs.inputsAt(time, this.currentState);
 
-    const rates = (state: SimState<Aux, AuxRates>): SimRates<AuxRates> =>
-      this.dynamics.computeRates(state, this.environment, inputs);
+    const rates = (state: SimState<Aux, AuxRates>, stageTime: Seconds): SimRates<AuxRates> =>
+      this.dynamics.computeRates(state, this.environment, inputs, stageTime);
 
     this.currentState = this.integrator.step(this.currentState, time, this.timeStep, rates);
     this.stepCount += 1;

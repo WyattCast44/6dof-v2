@@ -1,3 +1,10 @@
 export { Environment } from "./Environment";
 export type { GravityModel } from "./gravity/GravityModel";
 export { ConstantGravity } from "./gravity/ConstantGravity";
+export type { AtmosphereModel } from "./atmosphere/AtmosphereModel";
+export { AtmosphereConditions } from "./atmosphere/AtmosphereConditions";
+export { ConstantAtmosphere } from "./atmosphere/ConstantAtmosphere";
+export { StandardAtmosphere1976 } from "./atmosphere/StandardAtmosphere1976";
+export type { WindModel } from "./wind/WindModel";
+export { NoWind } from "./wind/NoWind";
+export { ConstantWind } from "./wind/ConstantWind";

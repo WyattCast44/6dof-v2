@@ -7,7 +7,7 @@ Guidance for Claude Code when working in this repository.
 ```bash
 npm run check                       # tsc --noEmit + vitest run (run before every commit)
 npx vitest run src/attitude         # one folder
-npm run example:ball-drop           # run an example with tsx
+npm run example:ball-drop           # run an example with tsx (see package.json for all)
 ```
 
 ## Design

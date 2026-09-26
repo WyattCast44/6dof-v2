@@ -9,7 +9,8 @@
     "test:run": "vitest run",
     "typecheck": "tsc --noEmit",
     "check": "tsc --noEmit && vitest run",
-    "example:ball-drop": "tsx examples/01-ball-drop.ts"
+    "example:ball-drop": "tsx examples/01-ball-drop.ts",
+    "example:ball-with-drag": "tsx examples/02-ball-with-drag.ts"
   },
   "devDependencies": {
     "@types/node": "^22.20.4",

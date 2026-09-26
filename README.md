@@ -26,9 +26,10 @@ run.timeWhenReaches((s) => s.altitude, new Meters(0)); // time aloft, in Seconds
 
 ```bash
 npm install
-npm test                    # vitest, watch mode
-npm run check               # typecheck + all tests once
-npm run example:ball-drop   # rung 1
+npm test                        # vitest, watch mode
+npm run check                   # typecheck + all tests once
+npm run example:ball-drop       # rung 1
+npm run example:ball-with-drag  # rung 2
 ```
 
 ## Layout
@@ -40,7 +41,8 @@ npm run example:ball-drop   # rung 1
 | `src/attitude`      | `EulerAngles`: body↔NED rotation and the Euler kinematic equations       |
 | `src/state`         | `RigidBodyState` (the 12 states), `AuxiliaryState`, `SimState`, and their rates |
 | `src/integrators`   | `Euler`, `RK4`                                                          |
-| `src/environment`   | `Environment` and its model families (gravity so far)                   |
+| `src/environment`   | `Environment` and its model families: gravity, atmosphere (constant, 1976), wind |
+| `src/aero`          | `AirData` (airspeed, α, β, q̄), the `AeroModel` contract, `NoAero`, `SphereDrag` |
 | `src/dynamics`      | `DynamicsModel` contract, `rigidBodyRates` (the equations of motion), `InertiaTensor` |
 | `src/sim`           | `Simulator`, input sources, `Recorder`, and `Recording` (scenario queries) |
 | `src/bodies`        | Concrete bodies and their dynamics (`Ball`, `BallDynamics`)             |
@@ -51,8 +53,8 @@ npm run example:ball-drop   # rung 1
 | Rung | Scenario                         | Status  |
 | ---- | -------------------------------- | ------- |
 | 1    | Ball dropped from altitude       | Done    |
-| 2    | Ball with drag                   | Next    |
-| 3    | Tumbling rigid body              | Core done (EOM + RK4); example to write |
+| 2    | Ball with drag                   | Done    |
+| 3    | Tumbling rigid body              | Next (EOM + RK4 already done and tested) |
 | 4    | Glider or aircraft               |         |
 | 5    | Powered aircraft with fuel burn  |         |
 | 6    | Configuration changes mid-flight |         |

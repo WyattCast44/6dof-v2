@@ -88,6 +88,19 @@ export abstract class Vector3<Q extends Quantity> {
     ] as unknown as Components<Product<Q, R>>;
   }
 
+  /**
+   * Components of a vector pointing the same way as `a`, but with length
+   * `magnitude` (in the magnitude's unit). A zero vector stays zero.
+   */
+  protected static withMagnitudeComponents<Q extends Quantity, R extends Quantity>(
+    a: Components<Q>,
+    magnitude: R,
+  ): Components<R> {
+    const length = Math.hypot(a[0].value, a[1].value, a[2].value);
+    const k = length === 0 ? 0 : 1 / length;
+    return [magnitude.scale(a[0].value * k), magnitude.scale(a[1].value * k), magnitude.scale(a[2].value * k)];
+  }
+
   protected static zeroComponents<Q extends Quantity>(unit: QuantityClass<Q>): Components<Q> {
     return [new unit(0), new unit(0), new unit(0)];
   }

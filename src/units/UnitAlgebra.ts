@@ -1,5 +1,8 @@
 import { Quantity, type QuantityClass } from "./Quantity";
 import { Kilograms } from "./Kilograms";
+import { MetersSquaredPerSecondSquared } from "./MetersSquaredPerSecondSquared";
+import { Pascals } from "./Pascals";
+import { SquareMeters } from "./SquareMeters";
 import { KilogramMetersSquaredPerSecond } from "./KilogramMetersSquaredPerSecond";
 import { Meters } from "./Meters";
 import { MetersPerSecond } from "./MetersPerSecond";
@@ -36,6 +39,11 @@ const products = () => ({
   // angular momentum H = I·ω, and ω × H
   "kg·m² * rad/s": KilogramMetersSquaredPerSecond,
   "rad/s * kg·m²/s": NewtonMeters,
+  // areas, and dynamic pressure q̄ = ½·ρ·V², drag D = q̄·S·C_D
+  "m * m": SquareMeters,
+  "m/s * m/s": MetersSquaredPerSecondSquared,
+  "kg/m³ * m²/s²": Pascals,
+  "Pa * m²": Newtons,
 });
 
 /** A ÷ B = C. */
@@ -50,6 +58,10 @@ const quotients = () => ({
   "N / m/s²": Kilograms,
   // α = M / I (about a single principal axis)
   "N·m / kg·m²": RadiansPerSecondSquared,
+  // pressure = force / area
+  "N / m²": Pascals,
+  // V² = 2·q̄ / ρ, the dynamic-pressure equation turned around
+  "Pa / kg/m³": MetersSquaredPerSecondSquared,
 });
 
 // ---- Type-level mirror of the tables above ---------------------------------

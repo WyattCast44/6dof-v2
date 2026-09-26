@@ -28,7 +28,7 @@ import { InertiaTensor } from "./InertiaTensor";
 import { rigidBodyRates } from "./RigidBodyEquations";
 
 const g = ConstantGravity.STANDARD.value;
-const ball = new Ball(new Kilograms(2), new Meters(0.1));
+const ball = new Ball({ mass: new Kilograms(2), radius: new Meters(0.1) });
 
 function dropSimulator(integrator: Integrator, state: RigidBodyState, dt = 0.01) {
   return new Simulator({
